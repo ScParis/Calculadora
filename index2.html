@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="sortcut icon" href="img/favicon.png" type="image/x-icon"/>
+    <script language="JavaScript" src="calc.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Calculadora</title>
+</head>
+
+<body>
+    <form name="calc">
+        <div id="calculadora">
+            <input type="text" id="visor" name="visor" disabled>           
+            <table>
+                <tr>
+                    <Td><input type="button" class="button" value="C" onclick="deleta()" /></Td>
+                    <Td><input type="button" class="button" value="Del" onclick="apaga()" /></Td>
+                    <Td><input type="button" class="button" value="/" onclick="botao('/')" /></Td>
+                    <Td><input type="button" class="button" value="*" onclick="botao('*')" /></Td>
+                </tr>
+                <tr>
+                    <Td><input type="button" class="button" value="7" onclick="botao('7')" /></Td>
+                    <Td><input type="button" class="button" value="8" onclick="botao('8')" /></Td>
+                    <Td><input type="button" class="button" value="9" onclick="botao('9')" /></Td>
+                    <Td><input type="button" class="button" value="-" onclick="botao('-')" /></Td>
+                </tr>
+                <tr>
+                    <Td><input type="button" class="button" value="4" onclick="botao('4')" /></Td>
+                    <Td><input type="button" class="button" value="5" onclick="botao('5')" /></Td>
+                    <Td><input type="button" class="button" value="6" onclick="botao('6')" /></Td>
+                    <Td><input type="button" class="button" value="+" onclick="botao('+')" /></Td>
+                </tr>
+                <tr>
+                    <Td><input type="button" class="button" value="1" onclick="botao('1')" /></Td>
+                    <Td><input type="button" class="button" value="2" onclick="botao('2')" /></Td>
+                    <Td><input type="button" class="button" value="3" onclick="botao('3')" /></Td>
+                    <Td><input type="button" class="button" value="=" onclick="calcula()" /></Td>
+                </tr>
+                <tr>
+                    <Td><input type="button" class="button" value="." onclick="botao('.')" /></Td>
+                    <Td><input type="button" class="button" value="0" onclick="botao('0')" /></Td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</body>
+</html>
