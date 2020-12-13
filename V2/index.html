@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8" />
+        <link rel="sortcut icon" href="img/favicon.png" type="image/x-icon" />
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1" name="viewport" />
+        <script language="JavaScript" src="calculadora.js"></script>
+        <link rel="stylesheet" href="estilo.css" />
+        <title>Calculadora Simples</title>
+    </head>
+
+    <body>
+        <section>
+        <h1>CALCULADORA</h1>
+        <form name="calc">
+            <div class="corpo">
+                <input class="visor" name="visor" disabled />
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                <input type="button" class="botao" value="C" onclick="excluir()" />
+                            </td>
+                            <td>
+                                <input type="button" class="botao b2" value="Del" onclick="apaga()" />
+                            </td>
+                            <td>
+                                <input type="button" class="botao b1" value="/" onclick="insere('/')" />
+                            </td>
+                            <td>
+                                <input type="button" class="botao b1" value="X" onclick="insere('*')" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="button" class="botao" value="7" onclick="insere(7)" />
+                            </td>
+                            <td>
+                                <input type="button" class="botao" value="8" onclick="insere(8)" />
+                            </td>
+                            <td>
+                                <input type="button" class="botao" value="9" onclick="insere(9)" />
+                            </td>
+                            <td>
+                                <input type="button" class="botao b1" value="-" onclick="insere('-')" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="button" class="botao" value="4" onclick="insere(4)" />
+                            </td>
+                            <td>
+                                <input type="button" class="botao" value="5" onclick="insere(5)" />
+                            </td>
+                            <td>
+                                <input type="button" class="botao" value="6" onclick="insere(6)" />
+                            </td>
+                            <td>
+                                <input type="button" class="botao b1" value="+" onclick="insere('+')" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input type="button" class="botao" value="1" onclick="insere(1)" />
+                            </td>
+                            <td>
+                                <input type="button" class="botao" value="2" onclick="insere(2)" />
+                            </td>
+                            <td>
+                                <input type="button" class="botao" value="3" onclick="insere(3)" />
+                            </td>
+                            <td rowspan="5">
+                                <input type="button" style="height: 106px;" class="botao b1" value="=" onclick="calcula ()" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <input type="button" style="width: 96%;" class="botao" value="0" onclick="insere(0)" />
+                            </td>
+                            <td>
+                                <input type="button" class="botao" value="." onclick="insere('.')" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </form>
+    </section>
+    </body>
+</html>

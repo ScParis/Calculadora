@@ -1,0 +1,59 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.botao{
+    width: 50px;
+    height: 50px;
+    margin: 2px;
+    background: gray;
+    border: 2px solid rgb(0, 0, 0, 0.25);
+    color: white;
+    font-size: 18pt;
+    cursor: pointer;
+    transition: 100ms ease;
+}
+.botao:hover{
+    opacity: 50%;
+}
+
+.visor{
+    width: 211px;
+    padding: 5px;
+    font-size: 30pt;
+    
+}
+
+.corpo{
+    position: absolute;
+    top: 65%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    background-color: black;
+}
+
+.b1{
+    background-color: orange;
+    transition: 100ms ease;
+}
+
+.b1:hover{
+    opacity: 50%;
+}
+
+.b2{
+    background-color: red;
+}
+
+h1{
+    position: relative;
+    top: 44%;
+    left: 45%;
+}
+
+div#calculadora {
+    box-shadow: 0 0 20px black;
+    background: black;
+    border: 1rem solid;
+}
