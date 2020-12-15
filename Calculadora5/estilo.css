@@ -1,0 +1,65 @@
+*, *::before, *::after{
+    box-sizing: border-box;
+    font-family: Gotham Rounded, sans-serif;
+    font-weight: normal;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background: linear-gradient(to right, #000000, #232423);
+}
+
+.calculadora-corpo {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    min-height: 100vh;
+    grid-template-columns: repeat(4, 100px);
+    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
+}
+
+.calculadora-corpo > button {
+    cursor: pointer;
+    font-size: 2rem;
+    color: white;
+    border: 5px solid gray;
+    background-color: rgba(0, 0, 0, 0.75);
+}
+
+.calculadora-corpo > button:hover {
+    background-color: rgba(41, 39, 39, 0.604);
+}
+
+.span-two {
+    grid-column: span 2;
+}
+
+.rollspan-two {
+    grid-row: span 2;
+}
+
+.tela {
+    grid-column: 1 / -1;
+    background-color: rgba(153, 107, 22, 0.75);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-direction: column;
+    padding: 10px;
+    word-wrap: break-word;
+    word-break: break-all;
+    border: 5px solid gray;
+}
+
+.tela .salva-numero{
+    color: rgba(255, 255, 255, .75);
+    font-size: 1.5rem;
+
+}
+
+.tela .digita-numero {
+    color: white;
+    font-size: 2.5rem;
+
+}
