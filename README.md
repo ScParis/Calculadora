@@ -63,9 +63,3 @@ Este projeto está sob a licença MIT.
 ## 🌐 Autor
 
 Desenvolvido com ❤️ por @ScParis
-
-## 🖼️ Captura de Tela
-
-![Captura de Tela da Calculadora](/screenshot.png)
-
-*Nota: Substitua `/screenshot.png` por uma captura de tela real do seu projeto.*
