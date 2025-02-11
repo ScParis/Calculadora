@@ -2,34 +2,47 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Calculadora</title>
-    <link href="estilo.css" rel="stylesheet">
-    <script src="calculos.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Simples</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./estilo.css">
+    <script src="./calculos.js" defer></script>
 </head>
 <body>
-    <div class="calculadora-corpo">
-        <div class="tela">
-            <div visor-salva-numero class="salva-numero"></div>
-            <div visor-digita-numero class="digita-numero"></div>
-        </div>
-        <button botao-limpa-tudo >C</button>
-        <button botao-deleta class="del">DEL</button>
-        <button botao-operacao>÷</button>
-        <button botao-operacao>x</button>
-        <button botao-numero>7</button>
-        <button botao-numero>8</button>
-        <button botao-numero>9</button>
-        <button botao-operacao>+</button>
-        <button botao-numero>4</button>
-        <button botao-numero>5</button>
-        <button botao-numero>6</button>
-        <button botao-operacao>-</button>
-        <button botao-numero>1</button>
-        <button botao-numero>2</button>
-        <button botao-numero>3</button>
-        <button botao-resultado class="rollspan-two">=</button>
-        <button botao-numero class="span-two">0</button>
-        <button botao-numero>.</button>        
-    </div>
+    <main class="calculator-container">
+        <section class="calculadora-corpo" aria-label="Calculadora">
+            <div class="tela" role="region" aria-label="Visor da calculadora">
+                <div class="historico" aria-live="polite"></div>
+                <output class="visor" aria-live="polite"></output>
+            </div>
+
+            <div class="botoes">
+                <button type="button" aria-label="Limpar tudo" data-limpa-tudo>C</button>
+                <button type="button" aria-label="Deletar último dígito" data-deleta>Del</button>
+                <button type="button" aria-label="Dividir" data-operacao="/">/</button>
+                <button type="button" aria-label="Multiplicar" data-operacao="*">X</button>
+
+                <button type="button" aria-label="Número 7" data-numero>7</button>
+                <button type="button" aria-label="Número 8" data-numero>8</button>
+                <button type="button" aria-label="Número 9" data-numero>9</button>
+                <button type="button" aria-label="Subtrair" data-operacao="-">-</button>
+
+                <button type="button" aria-label="Número 4" data-numero>4</button>
+                <button type="button" aria-label="Número 5" data-numero>5</button>
+                <button type="button" aria-label="Número 6" data-numero>6</button>
+                <button type="button" aria-label="Somar" data-operacao="+">+</button>
+
+                <button type="button" aria-label="Número 1" data-numero>1</button>
+                <button type="button" aria-label="Número 2" data-numero>2</button>
+                <button type="button" aria-label="Número 3" data-numero>3</button>
+                <button type="button" aria-label="Calcular resultado" data-resultado class="resultado">=</button>
+
+                <button type="button" aria-label="Número 0" data-numero class="zero">0</button>
+                <button type="button" aria-label="Ponto decimal" data-numero>.</button>
+            </div>
+        </section>
+    </main>
 </body>
 </html>

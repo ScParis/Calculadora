@@ -1,126 +1,107 @@
 class Calculator {
-  constructor(salvaNumeroTextElement, digitaNumeroTextElement) {
-    this.salvaNumeroTextElement = salvaNumeroTextElement
-    this.digitaNumeroTextElement = digitaNumeroTextElement
-    this.clear()
+  constructor(visorTextElement, historicoTextElement) {
+    this.visorTextElement = visorTextElement;
+    this.historicoTextElement = historicoTextElement; // Elemento do histórico
+    this.history = []; // Array para armazenar o histórico
+    this.clear();
   }
 
   clear() {
-    this.digitaNumero = ''
-    this.salvaNumero = ''
-    this.operacao = undefined
+    this.currentOperand = '';
+    this.previousOperand = '';
+    this.operation = undefined;
+    this.history = []; // Limpa o histórico
+    this.updateDisplay();
   }
 
   deleta() {
-    this.digitaNumero = this.digitaNumero.toString().slice(0, -1)
+    this.currentOperand = this.currentOperand.toString().slice(0, -1);
+    this.updateDisplay();
   }
 
-  appendNumber(numero) {
-    if (numero === '.' && this.digitaNumero.includes('.')) return
-    this.digitaNumero = this.digitaNumero.toString() + numero.toString()
+  appendNumber(number) {
+    if (number === '.' && this.currentOperand.includes('.')) return;
+    this.currentOperand = this.currentOperand.toString() + number.toString();
+    this.updateDisplay();
   }
 
-  chooseOperation(operacao) {
-    if (this.digitaNumero === '') return
-    if (this.salvaNumero !== '') {
-      this.compute()
+  chooseOperation(operation) {
+    if (this.currentOperand === '') return;
+    if (this.previousOperand !== '') {
+      this.compute(); // Calcula se já houver um operando anterior
     }
-    this.operacao = operacao
-    this.salvaNumero = this.digitaNumero
-    this.digitaNumero = ''
+    this.operation = operation;
+    this.previousOperand = this.currentOperand;
+    this.currentOperand = '';
+    // NÃO atualiza o display aqui.
   }
+
 
   compute() {
-    let computation
-    const prev = parseFloat(this.salvaNumero)
-    const current = parseFloat(this.digitaNumero)
-    if (isNaN(prev) || isNaN(current)) return
-    switch (this.operacao) {
+    let computation;
+    const prev = parseFloat(this.previousOperand);
+    const current = parseFloat(this.currentOperand);
+    if (isNaN(prev) || isNaN(current)) return;
+
+    switch (this.operation) {
       case '+':
-        computation = prev + current
-        break
+        computation = prev + current;
+        break;
       case '-':
-        computation = prev - current
-        break
-      case 'X':
-        computation = prev * current
-        break
-      case '÷':
-        computation = prev / current
-        break
+        computation = prev - current;
+        break;
+      case '*':
+        computation = prev * current;
+        break;
+      case '/':
+        computation = prev / current;
+        break;
       default:
-        return
+        return;
     }
-    this.digitaNumero = computation
-    this.operacao = undefined
-    this.salvaNumero = ''
+
+      // Adiciona a operação ao histórico
+      this.addToHistory(`${this.previousOperand} ${this.operation} ${this.currentOperand} = ${computation}`);
+
+    this.currentOperand = computation.toString();
+    this.operation = undefined;
+    this.previousOperand = '';
+    this.updateDisplay();
   }
 
-  getDisplayNumber(numero) {
-    const stringNumber = numero.toString()
-    const integerDigits = parseFloat(stringNumber.split('.')[0])
-    const decimalDigits = stringNumber.split('.')[1]
-    let integerDisplay
-    if (isNaN(integerDigits)) {
-      integerDisplay = ''
-    } else {
-      integerDisplay = integerDigits.toLocaleString('pt-br', { maximumFractionDigits: 0 })
+    addToHistory(entry) {
+        this.history.push(entry);
+        if (this.history.length > 3) {
+            this.history.shift(); // Remove o item mais antigo se tiver mais de 3
+        }
     }
-    if (decimalDigits != null) {
-      return `${integerDisplay}.${decimalDigits}`
-    } else {
-      return integerDisplay
-    }
-  }
+
 
   updateDisplay() {
-    this.digitaNumeroTextElement.innerText =
-      this.getDisplayNumber(this.digitaNumero)
-    if (this.operacao != null) {
-      this.salvaNumeroTextElement.innerText =
-        `${this.getDisplayNumber(this.salvaNumero)} ${this.operacao}`
-    } else {
-      this.salvaNumeroTextElement.innerText = ''
-    }
+    this.visorTextElement.textContent = this.currentOperand || this.previousOperand || '0';
+    // Atualiza o histórico
+    this.historicoTextElement.innerHTML = this.history.join('<br>');
   }
 }
 
+// Seleciona os elementos do visor e do histórico
+const visorTextElement = document.querySelector('.visor');
+const historicoTextElement = document.querySelector('.historico'); // Elemento do histórico
+const calculator = new Calculator(visorTextElement, historicoTextElement); // Passa o elemento do histórico
 
-const numeroButtons = document.querySelectorAll('[botao-numero]')
-const operacaoButtons = document.querySelectorAll('[botao-operacao]')
-const resultadoButton = document.querySelector('[botao-resultado]')
-const deletaButton = document.querySelector('[botao-deleta]')
-const limpaTudoButton = document.querySelector('[botao-limpa-tudo    ]')
-const salvaNumeroTextElement = document.querySelector('[visor-salva-numero]')
-const digitaNumeroTextElement = document.querySelector('[visor-digita-numero]')
+// Event delegation para os botões
+document.addEventListener('click', (event) => {
+  const target = event.target;
 
-const calculator = new Calculator(salvaNumeroTextElement, digitaNumeroTextElement)
-
-numeroButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    calculator.appendNumber(button.innerText)
-    calculator.updateDisplay()
-  })
-})
-
-operacaoButtons.forEach(button => {
-  button.addEventListener('click', () => {
-    calculator.chooseOperation(button.innerText)
-    calculator.updateDisplay()
-  })
-})
-
-resultadoButton.addEventListener('click', button => {
-  calculator.compute()
-  calculator.updateDisplay()
-})
-
-limpaTudoButton.addEventListener('click', button => {
-  calculator.clear()
-  calculator.updateDisplay()
-})
-
-deletaButton.addEventListener('click', button => {
-  calculator.deleta()
-  calculator.updateDisplay()
-})
+  if (target.matches('[data-numero]')) {
+    calculator.appendNumber(target.textContent);
+  } else if (target.matches('[data-operacao]')) {
+    calculator.chooseOperation(target.textContent);
+  } else if (target.matches('[data-resultado]')) {
+    calculator.compute();
+  } else if (target.matches('[data-limpa-tudo]')) {
+    calculator.clear();
+  } else if (target.matches('[data-deleta]')) {
+    calculator.deleta();
+  }
+});

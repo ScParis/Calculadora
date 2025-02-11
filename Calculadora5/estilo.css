@@ -1,65 +1,137 @@
-*, *::before, *::after{
+:root {
+    --bg-primary: #121212;
+    --bg-secondary: #1e1e1e;
+    --text-primary: #ffffff;
+    --text-secondary: #b0b0b0;
+    --accent-color: #4a4a4a;
+    --highlight-color: #2c7be5;
+}
+
+*, *::before, *::after {
     box-sizing: border-box;
-    font-family: Gotham Rounded, sans-serif;
-    font-weight: normal;
+    font-family: 'Inter', 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    font-weight: 400;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    padding: 0;
-    margin: 0;
-    background: linear-gradient(to right, #000000, #232423);
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text-primary);
+    line-height: 1.6;
+}
+
+.calculator-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 480px;
+    padding: 1rem;
 }
 
 .calculadora-corpo {
-    display: grid;
-    justify-content: center;
-    align-content: center;
-    min-height: 100vh;
-    grid-template-columns: repeat(4, 100px);
-    grid-template-rows: minmax(120px, auto) repeat(5, 100px);
-}
-
-.calculadora-corpo > button {
-    cursor: pointer;
-    font-size: 2rem;
-    color: white;
-    border: 5px solid gray;
-    background-color: rgba(0, 0, 0, 0.75);
-}
-
-.calculadora-corpo > button:hover {
-    background-color: rgba(41, 39, 39, 0.604);
-}
-
-.span-two {
-    grid-column: span 2;
-}
-
-.rollspan-two {
-    grid-row: span 2;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--accent-color);
+    border-radius: 20px;
+    padding: 1.25rem;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4), 0 5px 15px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+    width: 100%;
 }
 
 .tela {
-    grid-column: 1 / -1;
-    background-color: rgba(153, 107, 22, 0.75);
+    background-color: rgba(30, 30, 30, 0.8);
+    border-radius: 10px;
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
-    flex-direction: column;
-    padding: 10px;
-    word-wrap: break-word;
-    word-break: break-all;
-    border: 5px solid gray;
+    flex-direction: column; /* Para o histórico ficar acima do visor */
+    align-items: flex-end; /* Alinha à direita */
+    justify-content: flex-end;
+    padding: 0.9375rem;
+    margin-bottom: 0.9375rem;
+    overflow: hidden;
+    min-height: 7.5rem;
 }
 
-.tela .salva-numero{
-    color: rgba(255, 255, 255, .75);
+.historico {
+    color: var(--text-secondary);
     font-size: 1.5rem;
-
+    text-align: right;
+    width: 100%; /* Ocupa toda a largura */
+    margin-bottom: 0.5rem; /* Espaço entre histórico e visor */
+    opacity: 0.7;
+    min-height: 3em; /* Espaço para até 3 linhas de histórico */
 }
 
-.tela .digita-numero {
-    color: white;
+.visor {
+    color: var(--text-primary);
     font-size: 2.5rem;
+    font-weight: 500;
+    text-align: right;
+    word-break: break-all;
+    max-width: 100%;
+}
 
+.botoes {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.625rem;
+}
+
+.botoes button {
+    appearance: none;
+    border: none;
+    background-color: rgba(50, 50, 50, 0.8);
+    color: var(--text-primary);
+    font-size: 2rem;
+    font-weight: 500;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    outline: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.botoes button:hover {
+    background-color: var(--highlight-color);
+}
+
+.botoes button:active {
+    transform: scale(0.95);
+    background-color: rgba(44, 123, 229, 0.7);
+}
+
+.resultado {
+    grid-row: span 2;
+    background-color: var(--highlight-color) !important;
+}
+
+.zero {
+    grid-column: span 2;
+}
+
+@media (max-width: 500px) {
+    .botoes {
+        gap: 0.5rem;
+    }
+
+    .botoes button {
+        font-size: 1.5rem;
+        padding: 0.75rem;
+    }
+
+    .visor {
+        font-size: 2rem;
+    }
+    .historico{
+        font-size: 1.2rem;
+    }
 }
