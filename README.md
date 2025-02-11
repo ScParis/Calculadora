@@ -62,7 +62,7 @@ Este projeto está sob a licença MIT.
 
 ## 🌐 Autor
 
-Desenvolvido com ❤️ por [Seu Nome]
+Desenvolvido com ❤️ por @ScParis
 
 ## 🖼️ Captura de Tela
 
