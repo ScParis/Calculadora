@@ -1,0 +1,12 @@
+name: Calculadora
+description: Uma calculadora simples e moderna desenvolvida em HTML, CSS e JavaScript
+topics:
+  - calculator
+  - web-development
+  - javascript
+  - html
+  - css
+
+website: https://github.com/ScParis/Calculadora
+repository_type: web-application
+language: JavaScript
